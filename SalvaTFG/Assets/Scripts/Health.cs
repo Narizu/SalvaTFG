@@ -16,12 +16,14 @@ public class Health : NetworkBehaviour
     public RectTransform healthBar;
 
     private NetworkStartPosition[] spawnPoints;
+    private PlayerController2 playerController;
 
     void Start()
     {
         if (isLocalPlayer)
         {
             spawnPoints = FindObjectsOfType<NetworkStartPosition>();
+            playerController = GetComponent<PlayerController2>();
         }
     }
 
@@ -68,6 +70,8 @@ public class Health : NetworkBehaviour
 
             // Set the player’s position to the chosen spawn point
             transform.position = spawnPoint;
+
+            playerController.StopAgent();
         }
     }
 }

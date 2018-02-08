@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class Spell : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour {
         var health = hit.GetComponent<Health>();
         if (health != null)
         {
-            health.TakeDamage(10);
+            health.TakeDamage(20);
         }
 
         Destroy(gameObject);
