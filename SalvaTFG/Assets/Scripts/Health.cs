@@ -16,14 +16,14 @@ public class Health : NetworkBehaviour
     public RectTransform healthBar;
 
     private NetworkStartPosition[] spawnPoints;
-    private PlayerController2 playerController;
+    private PlayerController playerController;
 
     void Start()
     {
         if (isLocalPlayer)
         {
             spawnPoints = FindObjectsOfType<NetworkStartPosition>();
-            playerController = GetComponent<PlayerController2>();
+            playerController = GetComponent<PlayerController>();
         }
     }
 

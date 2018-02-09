@@ -17,7 +17,7 @@ public class LoadLevel : MonoBehaviour
     public void OpenScene1 ()
     {
 
-        print("LOAD SCENE 1: GAME");
+        print("LOAD SCENE 1: MAIN");
         SceneManager.LoadScene(1);
 
     }
