@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell : MonoBehaviour {
+public class Spell : MonoBehaviour
+{
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter (Collision collision)
     {
+
         var hit = collision.gameObject;
         var health = hit.GetComponent<Health>();
+
         if (health != null)
-        {
             health.TakeDamage(20);
-        }
 
         Destroy(gameObject);
+
     }
+
 }
