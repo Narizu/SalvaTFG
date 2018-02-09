@@ -33,10 +33,13 @@ public class Health : NetworkBehaviour
             return;
 
         currentHealth -= amount;
+        print("ENEMY HEALTH: " + currentHealth);
+
         if (currentHealth <= 0)
         {
             if (destroyOnDeath)
             {
+                print("ENEMY DIES");
                 Destroy(gameObject);
             }
             else

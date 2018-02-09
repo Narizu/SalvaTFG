@@ -18,6 +18,9 @@ public class PlayerController2 : NetworkBehaviour
     private float timeLastAttack;
     private float timeBetweenAttacks;
     private int attackDamage;
+    private int experience;
+    private int level;
+    private int constant;
 
     private void Start()
     {
@@ -30,6 +33,11 @@ public class PlayerController2 : NetworkBehaviour
         timeLastAttack = 0;
         timeBetweenAttacks = 1;
         attackDamage = 10;
+        experience = 0;
+        level = 1;
+        constant = 10;
+        print("GAINED EXPERIENCE: 0. CURRENT EXPERIENCE: " + experience + ".");
+        print("LEVEL: " + level + ".");
     }
 
     void Update()
@@ -83,6 +91,7 @@ public class PlayerController2 : NetworkBehaviour
             else
             {
                 attacking = false;
+                UpdateExperience(constant);
             }
         }
 
@@ -126,6 +135,7 @@ public class PlayerController2 : NetworkBehaviour
 
     private void PlayerMovement (Vector3 point)
     {
+        print("GOING TO " + point);
         agent.isStopped = false;
         agent.destination = point;
     }
@@ -157,5 +167,13 @@ public class PlayerController2 : NetworkBehaviour
             health.TakeDamage(attackDamage);
             timeLastAttack = Time.time;
         }
+    }
+
+    private void UpdateExperience (int exp)
+    {
+        experience += exp;
+        print("GAINED EXPERIENCE: " + exp + ". CURRENT EXPERIENCE: " + experience + ".");
+        level = experience / constant + 1;
+        print("LEVEL: " + level + ".");
     }
 }
