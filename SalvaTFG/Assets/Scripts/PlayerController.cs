@@ -38,6 +38,7 @@ public class PlayerController : NetworkBehaviour
         experience = 0;
         level = 1;
         constant = 10;
+        agent.updateRotation = false;
         print("GAINED EXPERIENCE: 0. CURRENT EXPERIENCE: " + experience + ".");
         print("LEVEL: " + level + ".");
 
@@ -48,10 +49,10 @@ public class PlayerController : NetworkBehaviour
 
         if (!isLocalPlayer)
             return;
-
-        if (agent.isStopped)
-            agent.updateRotation = false;
-
+        
+        //if (agent.isStopped)
+        //    agent.updateRotation = false;
+            
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -61,7 +62,8 @@ public class PlayerController : NetworkBehaviour
             {
 
                 destination = hit.point;
-                agent.updateRotation = true;
+                //agent.updateRotation = true;
+                transform.LookAt(hit.point);
 
                 if (hit.collider.tag == "Enemy")
                 {
@@ -77,6 +79,7 @@ public class PlayerController : NetworkBehaviour
                 else if (hit.collider.tag == "Floor")
                 {
 
+                    selected = null;
                     attacking = false;
                     PlayerMovement(destination);
 
@@ -93,7 +96,9 @@ public class PlayerController : NetworkBehaviour
             {
 
                 agent.isStopped = true;
-                PlayerAttack();
+
+                if (InRange(selected.transform.position))
+                    PlayerAttack();
 
             }
 
@@ -107,19 +112,22 @@ public class PlayerController : NetworkBehaviour
 
         }
 
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
-
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
+        if (selected != null)
+            transform.LookAt(selected.transform.position);
 
         if (Input.GetKeyDown(KeyCode.Space))
             CmdFire();
 
+        /*
+        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+        transform.Rotate(0, x, 0);
+        transform.Translate(0, 0, z);
+        */
+
     }
 
-    // This [Command] code is called on the Client …
-    // … but it is run on the Server!
+    // This [Command] code is called on the Client but it is run on the Server!
     [Command]
     private void CmdFire ()
     {
