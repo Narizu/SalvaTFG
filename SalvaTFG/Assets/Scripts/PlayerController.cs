@@ -50,9 +50,6 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer)
             return;
         
-        //if (agent.isStopped)
-        //    agent.updateRotation = false;
-            
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -62,10 +59,9 @@ public class PlayerController : NetworkBehaviour
             {
 
                 destination = hit.point;
-                //agent.updateRotation = true;
                 transform.LookAt(hit.point);
 
-                if (hit.collider.tag == "Enemy")
+                if (hit.collider.tag == "Enemy" || hit.collider.tag == "Player" && hit.transform != transform)
                 {
 
                     selected = hit.collider;
@@ -82,6 +78,15 @@ public class PlayerController : NetworkBehaviour
                     selected = null;
                     attacking = false;
                     PlayerMovement(destination);
+
+                }
+
+                else
+                {
+
+                    selected = null;
+                    attacking = false;
+                    agent.isStopped = true;
 
                 }
 
@@ -117,13 +122,6 @@ public class PlayerController : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             CmdFire();
-
-        /*
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
-        */
 
     }
 
