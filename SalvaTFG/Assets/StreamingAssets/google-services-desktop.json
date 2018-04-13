@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "58962268094",
+    "firebase_url": "https://salva-tfg.firebaseio.com",
+    "project_id": "salva-tfg",
+    "storage_bucket": "salva-tfg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58962268094:android:58294eb587152db7",
+        "android_client_info": {
+          "package_name": "com.salvatfg.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58962268094-77eu88bfqajml7h93mnd9kati8j62nn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYuh8la4ak5LJB_nEW_PwHWtMHn_y9oDE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
